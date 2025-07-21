@@ -42,6 +42,20 @@ vim.keymap.set('n', '<leader>su', function() -- fu = find usage
   })
 end, { desc = 'Telescope: Find usages of current file (filename root)' })
 
+-- Live grep the word under cursor
+vim.keymap.set('n', '<leader>gw', function()
+    local word = vim.fn.expand('<cword>')
+    if word == '' then
+        print("No word under cursor")
+        return
+    end
+    
+    builtin.live_grep({
+        prompt_title = "Live Grep: '" .. word .. "'",
+        default_text = word,
+    })
+end, { desc = 'Telescope: Live grep word under cursor' })
+
 require("telescope").load_extension("ui-select")
 
 -- Function to show categorized keymaps

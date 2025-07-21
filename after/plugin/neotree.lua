@@ -90,11 +90,19 @@ require'neo-tree'.setup {
 }
 
 vim.keymap.set('n', '<leader>e', function()
-  vim.cmd('Neotree toggle left')
-end, { desc = 'Toggle Neotree left window' })
+  local manager = require("neo-tree.sources.manager")
+  local renderer = require("neo-tree.ui.renderer")
+  local state = manager.get_state("filesystem")
+  
+  if renderer.window_exists(state) then
+    vim.cmd('Neotree close')
+  else
+    vim.cmd('Neotree reveal')
+  end
+end, { desc = 'Toggle Neotree' })
 
 -- Keymap to reveal current file in Neotree
-vim.keymap.set('n', '<leader>tf', function()
+--[[vim.keymap.set('n', '<leader>tf', function()
   vim.cmd('Neotree reveal')
 end, { desc = 'Reveal current file in Neotree' })
 
@@ -124,6 +132,24 @@ vim.api.nvim_create_autocmd("BufEnter", {
     end
   end,
 })
+--]]
+-- Auto-open and reveal Neotree when opening files via Telescope
+--[[
+vim.api.nvim_create_autocmd("BufReadPost", {
+  group = group,
+  pattern = "*",
+  callback = function()
+    -- Check if this is a real file (not a special buffer)
+    local bufname = vim.api.nvim_buf_get_name(0)
+    if bufname ~= "" and vim.bo.filetype ~= "neo-tree" and vim.bo.buftype == "" then
+      -- Small delay to ensure buffer is fully loaded
+      vim.defer_fn(function()
+        -- First ensure Neotree is open and reveal the current file
+        pcall(vim.cmd, "silent Neotree reveal left")
+      end, 50)
+    end
+  end,
+})
 
 -- Auto-open Neotree on new tabs
 vim.api.nvim_create_autocmd("TabNew", {
@@ -135,3 +161,4 @@ vim.api.nvim_create_autocmd("TabNew", {
     end, 10)
   end,
 })
+]]

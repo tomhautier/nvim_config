@@ -6,13 +6,6 @@ vim.keymap.set("n", "<leader>q", vim.cmd.q, { desc = 'Window: Close current' })
 -- Save current buffer
 vim.keymap.set("n", "<leader>W", vim.cmd.w, { desc = 'Buffer: Save current' })
 
--- idewebstorm
--- vim.keymap.set("n", "<leader>wn", function() vim.cmd('split | terminal cd ~/ide/Webstorm2024/bin && ./webstorm.sh ~/renolib/renolib-pro') end)
--- vim.keymap.set("n", "<leader>wf", function() vim.cmd('split | terminal cd ~/ide/Webstorm2024/bin && ./webstorm.sh ~/renolib/pro.front.v2') end)
--- vim.keymap.set("n", "<leader>wb", function() vim.cmd('split | terminal cd ~/ide/Webstorm2024/bin && ./webstorm.sh ~/renolib/pro.back') end)
--- vim.keymap.set("n", "<leader>wb", function() vim.cmd('split | terminal cd ~/renolib/renolib-pro && &>/dev/null ~/../../../opt/Cursor/AppRun .') end)
--- vim.keymap.set("n", "<leader>wf", function() vim.cmd('split | terminal cd ~/renolib/renolib-pro && &>/dev/null ~/../../../opt/Cursor/AppRun .') end)
-
 vim.keymap.set('n', '<leader>w', '<C-w>w', { desc = "Window: Cycle next", noremap = true, silent = true })
 
 function OpenAndCloseTerminal(command)
@@ -69,13 +62,13 @@ local function select_ide_project()
   local choices = {
     { 
       display = "WebStorm - Current Directory", 
-      dir = "~/ide/Webstorm2024/bin", 
-      cmd = "./webstorm.sh " .. vim.fn.shellescape(current_working_dir)
+      dir = "/home/bandini/Téléchargements/WebStorm-2025.1.3/WebStorm-251.26927.40/bin", 
+      cmd = "./webstorm " .. vim.fn.shellescape(current_working_dir)
     },
     { 
       display = "WebStorm - Current Directory With Nvim Tabs", 
-      dir = "~/ide/Webstorm2024/bin", 
-      cmd = "./webstorm.sh " .. vim.fn.shellescape(current_working_dir) .. " " .. table.concat(vim.tbl_map(vim.fn.shellescape, open_files), " ")
+       dir = "/home/bandini/Téléchargements/WebStorm-2025.1.3/WebStorm-251.26927.40/bin",
+            cmd = "./webstorm " .. vim.fn.shellescape(current_working_dir) .. " " .. table.concat(vim.tbl_map(vim.fn.shellescape, open_files), " ")
     },
     { 
       display = "Cursor - Current Directory", 
@@ -188,3 +181,30 @@ end, { desc = 'Tab: Merge with next tab' })
 
 vim.keymap.set("n", "<leader>tn", ":tabn<CR>", { desc = "Tab: Next tab" })
 vim.keymap.set("n", "<leader>tp", ":tabp<CR>", { desc = "Tab: Previous tab" })
+
+-- Launch new terminal with Neovim on current file
+vim.keymap.set("n", "<S-t>", function()
+  local current_working_dir = vim.fn.getcwd()
+  local current_file = vim.api.nvim_buf_get_name(0)
+  
+  -- Build the command
+  local nvim_command
+  if current_file and current_file ~= "" and vim.fn.filereadable(current_file) == 1 then
+    nvim_command = "nvim " .. vim.fn.shellescape(current_file)
+  else
+    nvim_command = "nvim"
+  end
+  
+  -- Launch xterm with nvim
+  local xterm_cmd = {"xterm", "-e", "bash", "-c", "cd " .. vim.fn.shellescape(current_working_dir) .. " && " .. nvim_command}
+  
+  local job_id = vim.fn.jobstart(xterm_cmd, {
+    detach = true
+  })
+  
+  if current_file and current_file ~= "" then
+    vim.notify("Launched xterm with nvim on " .. vim.fn.fnamemodify(current_file, ":t"), vim.log.levels.INFO)
+  else
+    vim.notify("Launched xterm with nvim", vim.log.levels.INFO)
+  end
+end, { desc = "Terminal: Launch xterm with Neovim on current file" })
