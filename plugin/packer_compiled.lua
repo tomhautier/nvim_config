@@ -95,11 +95,6 @@ _G.packer_plugins = {
     path = "/home/bandini/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
     url = "https://github.com/hrsh7th/cmp-nvim-lsp"
   },
-  ["cmp-nvim-lua"] = {
-    loaded = true,
-    path = "/home/bandini/.local/share/nvim/site/pack/packer/start/cmp-nvim-lua",
-    url = "https://github.com/hrsh7th/cmp-nvim-lua"
-  },
   ["cmp-path"] = {
     loaded = true,
     path = "/home/bandini/.local/share/nvim/site/pack/packer/start/cmp-path",
@@ -110,20 +105,10 @@ _G.packer_plugins = {
     path = "/home/bandini/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
-  ["friendly-snippets"] = {
-    loaded = true,
-    path = "/home/bandini/.local/share/nvim/site/pack/packer/start/friendly-snippets",
-    url = "https://github.com/rafamadriz/friendly-snippets"
-  },
   ["kanagawa.nvim"] = {
     loaded = true,
     path = "/home/bandini/.local/share/nvim/site/pack/packer/start/kanagawa.nvim",
     url = "https://github.com/rebelot/kanagawa.nvim"
-  },
-  ["lsp-zero.nvim"] = {
-    loaded = true,
-    path = "/home/bandini/.local/share/nvim/site/pack/packer/start/lsp-zero.nvim",
-    url = "https://github.com/VonHeikemen/lsp-zero.nvim"
   },
   ["mason-lspconfig.nvim"] = {
     loaded = true,
@@ -139,12 +124,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/bandini/.local/share/nvim/site/pack/packer/start/neo-tree.nvim",
     url = "https://github.com/nvim-neo-tree/neo-tree.nvim"
-  },
-  ["none-ls.nvim"] = {
-    config = { "\27LJ\2\nø\1\0\0\a\0\18\0\0286\0\0\0'\2\1\0B\0\2\0029\1\2\0005\3\b\0004\4\3\0009\5\3\0009\5\4\0059\5\5\5>\5\1\0049\5\3\0009\5\6\0059\5\a\5>\5\2\4=\4\t\3B\1\2\0016\1\n\0009\1\v\0019\1\f\1'\3\r\0'\4\14\0006\5\n\0009\5\15\0059\5\16\0059\5\17\0054\6\0\0B\1\5\1K\0\1\0\vformat\bbuf\blsp\15<leader>gf\6n\bset\vkeymap\bvim\fsources\1\0\1\fsources\0\nspell\15completion\vstylua\15formatting\rbuiltins\nsetup\fnull-ls\frequire\0" },
-    loaded = true,
-    path = "/home/bandini/.local/share/nvim/site/pack/packer/start/none-ls.nvim",
-    url = "https://github.com/nvimtools/none-ls.nvim"
   },
   ["nui.nvim"] = {
     loaded = true,
@@ -217,22 +196,23 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/bandini/.local/share/nvim/site/pack/packer/start/template-string.nvim",
     url = "https://github.com/axelvc/template-string.nvim"
+  },
+  ["typescript-tools.nvim"] = {
+    loaded = true,
+    path = "/home/bandini/.local/share/nvim/site/pack/packer/start/typescript-tools.nvim",
+    url = "https://github.com/pmizio/typescript-tools.nvim"
   }
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: rose-pine
-time([[Config for rose-pine]], true)
-try_loadstring("\27LJ\2\n9\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0\26colorscheme rose-pine\bcmd\bvim\0", "config", "rose-pine")
-time([[Config for rose-pine]], false)
 -- Config for: alpha-nvim
 time([[Config for alpha-nvim]], true)
 try_loadstring("\27LJ\2\na\0\0\5\0\5\0\n6\0\0\0'\2\1\0B\0\2\0029\0\2\0006\2\0\0'\4\3\0B\2\2\0029\2\4\2B\0\2\1K\0\1\0\vconfig\27alpha.themes.dashboard\nsetup\nalpha\frequire\0", "config", "alpha-nvim")
 time([[Config for alpha-nvim]], false)
--- Config for: none-ls.nvim
-time([[Config for none-ls.nvim]], true)
-try_loadstring("\27LJ\2\nø\1\0\0\a\0\18\0\0286\0\0\0'\2\1\0B\0\2\0029\1\2\0005\3\b\0004\4\3\0009\5\3\0009\5\4\0059\5\5\5>\5\1\0049\5\3\0009\5\6\0059\5\a\5>\5\2\4=\4\t\3B\1\2\0016\1\n\0009\1\v\0019\1\f\1'\3\r\0'\4\14\0006\5\n\0009\5\15\0059\5\16\0059\5\17\0054\6\0\0B\1\5\1K\0\1\0\vformat\bbuf\blsp\15<leader>gf\6n\bset\vkeymap\bvim\fsources\1\0\1\fsources\0\nspell\15completion\vstylua\15formatting\rbuiltins\nsetup\fnull-ls\frequire\0", "config", "none-ls.nvim")
-time([[Config for none-ls.nvim]], false)
+-- Config for: rose-pine
+time([[Config for rose-pine]], true)
+try_loadstring("\27LJ\2\n9\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0\26colorscheme rose-pine\bcmd\bvim\0", "config", "rose-pine")
+time([[Config for rose-pine]], false)
 -- Config for: telescope-ui-select.nvim
 time([[Config for telescope-ui-select.nvim]], true)
 try_loadstring("\27LJ\2\n½\1\0\0\b\0\t\1\0186\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\a\0005\3\5\0004\4\3\0006\5\0\0'\a\3\0B\5\2\0029\5\4\0054\a\0\0B\5\2\0?\5\0\0=\4\6\3=\3\b\2B\0\2\1K\0\1\0\15extensions\1\0\1\15extensions\0\14ui-select\1\0\1\14ui-select\0\17get_dropdown\21telescope.themes\nsetup\14telescope\frequire\3€€À™\4\0", "config", "telescope-ui-select.nvim")

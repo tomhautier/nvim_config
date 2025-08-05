@@ -208,3 +208,14 @@ vim.keymap.set("n", "<S-t>", function()
     vim.notify("Launched xterm with nvim", vim.log.levels.INFO)
   end
 end, { desc = "Terminal: Launch xterm with Neovim on current file" })
+
+-- Move current window to a new tab
+vim.keymap.set("n", "<leader>tb", function()
+    vim.cmd('wincmd T')
+end, { desc = "Window: Move to new tab" })
+
+-- Switch tabs with leader + arrow keys
+vim.keymap.set("n", "<leader><Right>", ":tabnext<CR>", { desc = "Tab: Next tab", noremap = true, silent = true })
+vim.keymap.set("n", "<leader><Left>", ":tabprevious<CR>", { desc = "Tab: Previous tab", noremap = true, silent = true })
+
+

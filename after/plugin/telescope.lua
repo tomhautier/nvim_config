@@ -192,3 +192,22 @@ vim.keymap.set('n', '<leader>spf', function()
         end,
     })
 end, { desc = 'Telescope: Find files (vertical split)' })
+
+require('telescope').setup{
+  defaults = {
+    mappings = {
+      i = {
+        ["<cr>"] = require('telescope.actions').select_default,
+        ["<C-s>"] = require('telescope.actions').select_horizontal,
+        ["<C-v>"] = require('telescope.actions').select_vertical,
+        ["<C-t>"] = require('telescope.actions').select_tab,
+      },
+      n = {
+        ["<cr>"] = require('telescope.actions').select_default,
+        ["<C-s>"] = require('telescope.actions').select_horizontal,
+        ["<C-v>"] = require('telescope.actions').select_vertical,
+        ["<C-t>"] = require('telescope.actions').select_tab,
+      },
+    },
+  }
+}

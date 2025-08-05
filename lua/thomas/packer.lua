@@ -67,39 +67,23 @@ return require("packer").startup(function(use)
         end,
     })
 
-    use({
-        "nvimtools/none-ls.nvim",
-        config = function()
-            local null_ls = require("null-ls")
-            null_ls.setup({
-                sources = {
-                    null_ls.builtins.formatting.stylua,
-                    null_ls.builtins.completion.spell,
-                },
-            })
-            vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, { desc = 'Format: Format buffer (null-ls)' })
-        end,
-    })
-    use({
-        "VonHeikemen/lsp-zero.nvim",
-        branch = "v3.x",
-        requires = {
-            --- Uncomment the two plugins below if you want to manage the language servers from neovim
-            { "williamboman/mason.nvim" },
-            { "williamboman/mason-lspconfig.nvim" },
-            -- LSP Support
-            { "neovim/nvim-lspconfig" },
-            -- Autocompletion
-            { "hrsh7th/nvim-cmp",                 commit = "1e1900b0769324a9675ef85b38f99cca29e203b3" },
-            { "hrsh7th/cmp-nvim-lsp" },
-            { "L3MON4D3/LuaSnip" },
+    -- LSP
+    use 'neovim/nvim-lspconfig'
+    use 'williamboman/mason.nvim'
+    use 'williamboman/mason-lspconfig.nvim'
 
-            { "hrsh7th/cmp-buffer" },
-            { "hrsh7th/cmp-path" },
-            { "saadparwaiz1/cmp_luasnip" },
+    -- Autocompletion
+    use 'hrsh7th/nvim-cmp'
+    use 'hrsh7th/cmp-nvim-lsp'
+    use 'hrsh7th/cmp-buffer'
+    use 'hrsh7th/cmp-path'
 
-            { "hrsh7th/cmp-nvim-lua" },
-            { "rafamadriz/friendly-snippets" },
-        },
-    })
+    -- Snippets
+    use 'L3MON4D3/LuaSnip'
+    use 'saadparwaiz1/cmp_luasnip'
+
+    use {
+        "pmizio/typescript-tools.nvim",
+        requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+      }
 end)
