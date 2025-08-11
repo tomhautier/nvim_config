@@ -168,7 +168,7 @@ end
 vim.keymap.set('n', '<leader>help', show_keymaps, { noremap = true, silent = true, desc = 'Help: Show custom keymaps' })
 
 -- Custom find_files that opens selection in vertical split (on the right)
-vim.keymap.set('n', '<leader>spf', function()
+vim.keymap.set('n', '<leader>fvs', function()
     local action_state = require('telescope.actions.state')
     local actions = require('telescope.actions')
     

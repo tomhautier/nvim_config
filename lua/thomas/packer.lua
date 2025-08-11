@@ -27,13 +27,6 @@ return require("packer").startup(function(use)
         end,
     })
 
-    use({
-        "rose-pine/neovim",
-        as = "rose-pine",
-        config = function()
-            vim.cmd("colorscheme rose-pine")
-        end,
-    })
 
     use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })
     use("nvim-treesitter/playground")
@@ -71,6 +64,10 @@ return require("packer").startup(function(use)
     use 'neovim/nvim-lspconfig'
     use 'williamboman/mason.nvim'
     use 'williamboman/mason-lspconfig.nvim'
+
+    -- Linting et Formatting
+    use 'mfussenegger/nvim-lint'        -- Pour ESLint
+    use 'stevearc/conform.nvim'         -- Pour Prettier et autres formatters
 
     -- Autocompletion
     use 'hrsh7th/nvim-cmp'

@@ -105,6 +105,11 @@ _G.packer_plugins = {
     path = "/home/bandini/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
+  ["conform.nvim"] = {
+    loaded = true,
+    path = "/home/bandini/.local/share/nvim/site/pack/packer/start/conform.nvim",
+    url = "https://github.com/stevearc/conform.nvim"
+  },
   ["kanagawa.nvim"] = {
     loaded = true,
     path = "/home/bandini/.local/share/nvim/site/pack/packer/start/kanagawa.nvim",
@@ -134,6 +139,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/bandini/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
+  },
+  ["nvim-lint"] = {
+    loaded = true,
+    path = "/home/bandini/.local/share/nvim/site/pack/packer/start/nvim-lint",
+    url = "https://github.com/mfussenegger/nvim-lint"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
