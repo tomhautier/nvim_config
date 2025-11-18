@@ -4,5 +4,5 @@ require('thomas.set')
 require('thomas.lsp')
 require('thomas.cmp')
 require('thomas.lint-format')
-
+require('thomas.telescope')
 

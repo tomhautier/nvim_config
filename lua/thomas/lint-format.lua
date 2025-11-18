@@ -84,7 +84,7 @@ conform.setup({
 	format_on_save = function(bufnr)
 		-- Applique seulement Prettier automatiquement
 		return {
-			timeout_ms = 500,
+			timeout_ms = 2000,
 			lsp_fallback = true,
 			formatters = { "prettier" },
 		}
@@ -220,7 +220,7 @@ vim.keymap.set("n", "<leader>ef", simple_eslint_fix, { desc = "Simple ESLint fix
 
 -- Keymaps pour les diagnostics
 vim.keymap.set("n", "<leader>ed", vim.diagnostic.open_float, { desc = "Show line diagnostics" })
-vim.keymap.set("n", "<leader>q", show_diagnostics, { desc = "Show all diagnostics" })
+vim.keymap.set("n", "<leader>qd", show_diagnostics, { desc = "Show all diagnostics" })
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic" })
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic" })
 

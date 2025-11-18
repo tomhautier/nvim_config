@@ -1,8 +1,6 @@
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex, { desc = "File: Open file explorer" })
 
--- Close current window
-vim.keymap.set("n", "<leader>q", vim.cmd.q, { desc = "Window: Close current" })
 -- Save current buffer
 vim.keymap.set("n", "<leader>W", vim.cmd.w, { desc = "Buffer: Save current" })
 
@@ -78,7 +76,7 @@ local function select_ide_project()
 		{
 			display = "Cursor - Current Directory",
 			dir = current_working_dir,
-			cmd = "/home/bandini/Téléchargements/Cursor-0.49.6-x86_64.AppImage . --no-sandbox",
+			cmd = "/home/bandini/Téléchargements/Cursor-1.4.3-x86_64.AppImage . --no-sandbox",
 		},
 		{
 			display = "File Manager - OfflineCamera Build Directory",
@@ -229,3 +227,6 @@ end, { desc = "Window: Move to new tab" })
 -- Switch tabs with leader + arrow keys
 vim.keymap.set("n", "<leader><Right>", ":tabnext<CR>", { desc = "Tab: Next tab", noremap = true, silent = true })
 vim.keymap.set("n", "<leader><Left>", ":tabprevious<CR>", { desc = "Tab: Previous tab", noremap = true, silent = true })
+
+vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { desc = '[R]e[n]ame'})
+

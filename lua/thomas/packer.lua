@@ -83,4 +83,11 @@ return require("packer").startup(function(use)
         "pmizio/typescript-tools.nvim",
         requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
       }
+    use {
+        "fynnfluegge/monet.nvim",
+        name = "monet",
+    }
+    use { "RedsXDD/neopywal.nvim", as = "neopywal" }
+use("catgoose/nvim-colorizer.lua")
+
 end)

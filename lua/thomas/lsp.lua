@@ -24,7 +24,7 @@ lsp_keymap("n", "gD", require('telescope.builtin').lsp_references, "Show referen
 lsp_keymap("n", "K", vim.lsp.buf.hover, "Hover documentation")
 lsp_keymap("n", "<leader>vws", vim.lsp.buf.workspace_symbol, "Workspace symbols")
 lsp_keymap("n", "<leader>vd", vim.diagnostic.open_float, "Show line diagnostics")
-lsp_keymap("n", "gi", vim.lsp.buf.implementation, "Go to implementation")
+lsp_keymap("n", "gI", vim.lsp.buf.implementation, "Go to implementation")
 lsp_keymap("n", "[d", vim.diagnostic.goto_next, "Go to next diagnostic")
 lsp_keymap("n", "]d", vim.diagnostic.goto_prev, "Go to previous diagnostic")
 lsp_keymap("n", "<leader>vca", vim.lsp.buf.code_action, "Code actions")

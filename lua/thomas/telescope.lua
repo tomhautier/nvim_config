@@ -25,8 +25,22 @@ vim.keymap.set('n', '<leader>sw', function()
     builtin.live_grep({ default_text = vim.fn.expand('<cword>') })
 end, { desc = 'Telescope: Search word under cursor' })
 
--- Find usages of the symbol under the cursor
-vim.keymap.set('n', '<leader>su', builtin.lsp_references, { desc = 'Telescope: Find LSP references' })
+-- Add this keymap for finding file usages
+vim.keymap.set('n', '<leader>su', function() -- fu = find usage
+  -- Get the filename *without* the extension (root name)
+  -- This is often how files are referenced in imports/requires
+  local filename_root = vim.fn.expand('%:t:r')
+  if filename_root == '' then
+    print("Error: Could not determine filename for current buffer.")
+    return
+  end
+
+  -- Use live_grep, pre-filling the search prompt with the filename root
+  builtin.live_grep({
+    prompt_title = "Find Usages of '" .. vim.fn.expand('%:t') .. "'", -- Show full filename in title
+    default_text = filename_root,
+  })
+end, { desc = 'Telescope: Find usages of current file (filename root)' })
 
 -- Live grep the word under cursor
 vim.keymap.set('n', '<leader>gw', function()
@@ -181,19 +195,32 @@ end, { desc = 'Telescope: Find files (vertical split)' })
 
 require('telescope').setup{
   defaults = {
+    preview = {
+        width = 0.8,
+        height = 0.9,
+    },
     mappings = {
       i = {
         ["<cr>"] = require('telescope.actions').select_default,
         ["<C-s>"] = require('telescope.actions').select_horizontal,
         ["<C-v>"] = require('telescope.actions').select_vertical,
         ["<C-t>"] = require('telescope.actions').select_tab,
+        ["<C-u>"] = require('telescope.actions').preview_scrolling_up,
+        ["<C-d>"] = require('telescope.actions').preview_scrolling_down,
       },
       n = {
         ["<cr>"] = require('telescope.actions').select_default,
         ["<C-s>"] = require('telescope.actions').select_horizontal,
         ["<C-v>"] = require('telescope.actions').select_vertical,
         ["<C-t>"] = require('telescope.actions').select_tab,
+        ["<C-u>"] = require('telescope.actions').preview_scrolling_up,
+        ["<C-d>"] = require('telescope.actions').preview_scrolling_down,
       },
     },
+  },
+  pickers = {
+    live_grep = {
+      additional_args = { "--fixed-strings" }
+    }
   }
 }
