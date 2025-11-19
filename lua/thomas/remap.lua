@@ -1,10 +1,47 @@
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex, { desc = "File: Open file explorer" })
 
--- Save current buffer
+-- Nettoyage: Suppression de <leader>pv (Netrw) car remplacé par Neo-tree (<leader>e)
+-- vim.keymap.set("n", "<leader>pv", vim.cmd.Ex) 
+
+-- Save rapide (Ergonomie: <C-s> est standard dans beaucoup d'éditeurs)
 vim.keymap.set("n", "<leader>W", vim.cmd.w, { desc = "Buffer: Save current" })
+vim.keymap.set({ "n", "i" }, "<C-s>", "<cmd>w<CR>", { desc = "File: Quick save" })
 
-vim.keymap.set("n", "<leader>w", "<C-w>w", { desc = "Window: Cycle next", noremap = true, silent = true })
+-- --- NAVIGATION FENÊTRES (Le plus gros gain ergonomique) ---
+-- Au lieu de faire <leader>w pour cycler, utilise Ctrl + h/j/k/l pour aller direct dans la fenêtre voulue
+vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Window: Move Left" })
+vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Window: Move Down" })
+vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Window: Move Up" })
+vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Window: Move Right" })
+
+-- --- DÉPLACEMENT DE TEXTE (Mode Visuel) ---
+-- Permet de déplacer les lignes sélectionnées haut/bas avec J/K (comme dans VSCode avec Alt+Arrows)
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Edit: Move selection down" })
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Edit: Move selection up" })
+
+-- --- ERGONOMIE DU SCROLL ---
+-- Garde le curseur centré quand on fait Ctrl+d / Ctrl+u
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+-- Garde le curseur centré quand on cherche (n / N)
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
+
+-- --- CLIPBOARD INTELLIGENT ---
+-- Quand tu colles par dessus une sélection, ne pas perdre ce que tu avais copié
+vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "Paste: Without overwriting register" })
+
+-- --- DEV JS/REACT HELPER ---
+-- Insérer console.log() rapidement
+vim.keymap.set("n", "<leader>cl", "o<Esc>iconsole.log();<Esc>hi", { desc = "JS: Insert console.log()" })
+-- Log la variable sous le curseur
+vim.keymap.set("n", "<leader>cw", "yiwoc<Esc>pbi console.log('<Esc>ea:', <Esc>pa);<Esc>", { desc = "JS: Log word under cursor" })
+
+-- --- BUFFER MANAGEMENT ---
+-- Fermer le buffer courant rapidement sans fermer la fenêtre
+vim.keymap.set("n", "<leader>x", "<cmd>bp|bd #<CR>", { desc = "Buffer: Close current" })
+
+-- --- RESTE DE TES FONCTIONS PERSO ---
 
 function OpenAndCloseTerminal(command)
 	local buf = vim.api.nvim_create_buf(false, true)
@@ -29,7 +66,6 @@ function OpenAndCloseTerminal(command)
 end
 
 -- file browser
-
 vim.keymap.set("n", "<space>fb", function()
 	require("telescope").extensions.file_browser.file_browser()
 end, { desc = "Telescope: File browser" })
@@ -229,4 +265,3 @@ vim.keymap.set("n", "<leader><Right>", ":tabnext<CR>", { desc = "Tab: Next tab",
 vim.keymap.set("n", "<leader><Left>", ":tabprevious<CR>", { desc = "Tab: Previous tab", noremap = true, silent = true })
 
 vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { desc = '[R]e[n]ame'})
-
